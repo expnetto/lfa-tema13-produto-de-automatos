@@ -1,0 +1,53 @@
+# Palavras próprias. Formato: operação  palavra  esperado   # comentário
+# operações: inter (A ∩ B), uniao (A ∪ B), dif (A - B).  ε = palavra vazia.
+# O que vale: A = número par de 0, B = número ímpar de 1.
+
+# ---- A ∩ B: 10 aceitas -------------------------------------------------
+inter 1          aceita    # menor palavra aceita
+inter 010        aceita
+inter 100        aceita
+inter 00100      aceita
+inter 0000001    aceita    # muitos 0 (par) e um 1
+inter 11100      aceita
+inter 01101      aceita
+inter 1111111    aceita    # só 1, quantidade ímpar
+inter 001100111  aceita
+inter 0000111    aceita
+
+# ---- A ∩ B: 10 rejeitadas ----------------------------------------------
+inter ε          rejeita   # palavra vazia
+inter 0          rejeita   # 0 ímpar e nenhum 1
+inter 00         rejeita   # 0 par, mas falta o 1
+inter 11         rejeita   # "111" com um símbolo a menos
+inter 10         rejeita
+inter 1110       rejeita   # "111" com um símbolo a mais
+inter 12         rejeita   # "1" aceita + símbolo fora do alfabeto no fim
+inter x001       rejeita   # "001" aceita + símbolo fora do alfabeto no começo
+inter 0x01       rejeita   # símbolo fora do alfabeto no meio
+inter 1100       rejeita
+
+# ---- A ∪ B -------------------------------------------------------------
+uniao ε          aceita    # zero 0 é par
+uniao 0          rejeita   # nem A nem B
+uniao 1          aceita
+uniao 00         aceita
+uniao 01         aceita    # só B vale
+uniao 10         aceita
+uniao 011        rejeita
+uniao 0110       aceita    # só A vale
+uniao 000        rejeita
+uniao 0001       aceita
+uniao 12         rejeita
+
+# ---- A - B -------------------------------------------------------------
+dif ε            aceita    # está em A e não está em B
+dif 00           aceita
+dif 11           aceita
+dif 0            rejeita   # não está em A
+dif 1            rejeita   # está em B
+dif 0110         aceita
+dif 001          rejeita
+dif 0101         aceita
+dif 011          rejeita
+dif 1100         aceita
+dif a            rejeita

@@ -1,0 +1,10 @@
+# Palavras obrigatórias do enunciado (tema 13), todas sobre a interseção A ∩ B.
+# A = número par de 0.  B = número ímpar de 1.
+# Formato: operação  palavra  esperado     (ε = palavra vazia)
+inter 1    aceita
+inter 001  aceita
+inter 111  aceita
+inter 0101 rejeita
+inter 01   rejeita
+inter 0011 rejeita
+inter ε    rejeita
